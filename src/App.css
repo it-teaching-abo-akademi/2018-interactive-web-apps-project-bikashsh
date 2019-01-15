@@ -1,0 +1,60 @@
+.header {
+    text-align: center;
+    padding-top: 20px;
+    height: 100px;
+    background: #009FFF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ec2F4B, #009FFF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ec2F4B, #009FFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.add-portfolio{
+    margin-top: 1%;
+    margin-left: 45%;
+    font-weight: bold;
+    height: 30px;
+    background: #667db6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.row{
+  margin-top: 20px;
+}
+.portfolio-name{
+  font-weight: bold;
+  font-size: 20px;
+  color: #2F4F4F;
+  text-align: center;
+}
+.portfolio-box{
+  border: 1px solid black;
+  padding: 2%;
+  margin-bottom: 10px;
+}
+.portfolio-header{
+  display: flex;
+  justify-content: space-around;
+}
+
+.portfolio-body{
+  margin-top: 15px;
+}
+
+.portfolio-footer{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+table
+{
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: auto;
+}
+table, th, td
+{
+  padding: 5px;
+  border: 1px solid black;
+}
