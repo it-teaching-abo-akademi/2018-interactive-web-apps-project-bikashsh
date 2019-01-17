@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Modal, ModalFooter, ModalBody, ModalHeader} from 'reactstrap'
+import React, {Component} from 'react';
+import {Button, Input, Modal, ModalFooter, ModalBody, ModalHeader} from 'reactstrap';
 
 //Creating new portfolio
 class CreatePortfolio extends Component {
@@ -19,25 +19,25 @@ class CreatePortfolio extends Component {
         });
     }
     render() {
-        const {portfolioName, handlePortfolioName, createPortfolio} = this.props
+        const {portfolioName, handleChangePortfolio, createPortfolio} = this.props
         return (
             <div>
-                <button type="button" className="add-portfolio" onClick={this.toggle}>Add new Portfolio</button>
+                <Button className="addPortfolio" onClick={this.toggle}>Add new Portfolio</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader>Create a portfolio</ModalHeader>
                     <ModalBody>
-                        <input
+                        <Input
                             type="text"
                             className="form-control"
-                            placeholder="Portfolio Name"
+                            placeholder="Give a Portfolio Name"
                             size="30"
                             value={portfolioName}
-                            onChange={handlePortfolioName}
+                            onChange={handleChangePortfolio}
                         />
                     </ModalBody>
                     <ModalFooter>
-                        <button type="button" onClick={this.toggle}>Cancel</button>{' '}
-                        <button type="button" onClick={()=>createPortfolio(this.toggle)}>Add</button>
+                        <Button outline color="secondary" onClick={this.toggle}>Cancel</Button>{' '}
+                        <Button outline color="secondary" onClick={()=>createPortfolio(this.toggle)}>Add</Button>
                     </ModalFooter>
                 </Modal>
             </div>

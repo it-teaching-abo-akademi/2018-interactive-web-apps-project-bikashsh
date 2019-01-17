@@ -1,47 +1,47 @@
-.header {
+.appHeader {
+    color: #ffffff;
     text-align: center;
     padding-top: 20px;
     height: 100px;
-    background: #009FFF;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ec2F4B, #009FFF);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #ec2F4B, #009FFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #bdc3c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 }
-.add-portfolio{
-    margin-top: 1%;
+.addPortfolio{
+    margin-top: 10px;
     margin-left: 45%;
+    margin-bottom: 10px;
     font-weight: bold;
-    height: 30px;
+    height: 50px;
     background: #667db6;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
-.row{
-  margin-top: 20px;
-}
-.portfolio-name{
+.portfolioName{
   font-weight: bold;
   font-size: 20px;
   color: #2F4F4F;
   text-align: center;
 }
-.portfolio-box{
+.portfolio{
   border: 1px solid black;
   padding: 2%;
   margin-bottom: 10px;
 }
-.portfolio-header{
+.portfolioHeader{
   display: flex;
   justify-content: space-around;
 }
 
-.portfolio-body{
+.portfolioBody{
   margin-top: 15px;
 }
 
-.portfolio-footer{
+.portfolioFooter{
   display: flex;
   justify-content: space-around;
   align-items: flex-end;

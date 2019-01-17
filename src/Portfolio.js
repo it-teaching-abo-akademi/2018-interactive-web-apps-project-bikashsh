@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
-import CreatePortfolio from './CreatePortfolio'
-import CreateStock from './CreateStock'
-import axios from 'axios'
+import React, {Component} from 'react';
+import CreatePortfolio from './CreatePortfolio';
+import CreateStock from './CreateStock';
+import axios from 'axios';
 import update from 'immutability-helper';
+import { Button } from 'reactstrap';
 
 class Portfolio extends Component {
     constructor(props){
@@ -10,7 +11,7 @@ class Portfolio extends Component {
         this.state = {
             portfolioName: '',
             stockName: '',
-            stockAmount: 1,
+            stockQuantity: 1,
             portfolios: [],
             exchangeRate: '',
             selectedStocks: [],
@@ -33,13 +34,13 @@ class Portfolio extends Component {
     }
 
 
-    handlePortfolioName = (e)=>{
+    handleChangePortfolio = (e)=>{
         this.setState({
             portfolioName: e.target.value,
         })
 
     }
-    handleStockName = (e)=>{
+    handleChangeStock = (e)=>{
         this.setState({
             [e.target.name]: e.target.value,
         })
@@ -80,7 +81,7 @@ class Portfolio extends Component {
             alert('Please enter a stock name')
         } else{
             const stockName = this.state.stockName.toUpperCase();
-            const stockAmount = this.state.stockAmount;
+            const stockQuantity = this.state.stockQuantity;
             let portfolios = this.state.portfolios;
             axios
                 .get(
@@ -91,12 +92,12 @@ class Portfolio extends Component {
                 const data = res.data['Time Series (1min)']
                 const values = Object.values(data)
                 const unitValue = values[0]['1. open']
-                const total = Number.parseFloat(stockAmount * unitValue).toFixed(3)
+                const total = Number.parseFloat(stockQuantity * unitValue).toFixed(3)
                 const totalValue = total
                 const stock = {
                     stockName,
-                    stockAmount,
                     unitValue,
+                    stockQuantity,
                     totalValue,
                 }
                 portfolios[index].stocks.push(stock);
@@ -106,7 +107,7 @@ class Portfolio extends Component {
             }).catch(e=>alert('Stock does not exist'))
             this.setState({
                 stockName: '',
-                stockAmount: 1,
+                stockQuantity: 1,
             })
             toggle()
         }
@@ -172,22 +173,22 @@ class Portfolio extends Component {
     render() {
         const portfolios = this.state.portfolios.map((item, i)=>(
             <div key={i}>
-                <div className="portfolio-box">
-                    <div className="portfolio-header">
-                        <span className="portfolio-name">{item.name}</span>
-                        <span><button color="primary" onClick={()=>this.toggleButton(i)}>{this.state.portfolios[i].isEuro ? 'Show in Euro' : 'Show in Dollar'}</button></span>
-                        <span><button
-
+                <div className="portfolio">
+                    <div className="portfolioHeader">
+                        <span className="portfolioName">{item.name}</span>
+                        <span><Button color="secondary" onClick={()=>this.toggleButton(i)}>{this.state.portfolios[i].isEuro ? 'Show in €' : 'Show in $'}</Button></span>
+                        <span><Button
+                            outline color="secondary"
                             style={{'borderRadius': '50%'}}
-                            onClick={()=>{if(window.confirm('Are you sure you want to delete this portfolio?')) this.removePortfolio(i)}}>X</button>
+                            onClick={()=>{if(window.confirm('Are you sure you want to delete this portfolio?')) this.removePortfolio(i)}}>X</Button>
                         </span>
                     </div>
-                    <div className="portfolio-body">
+                    <div className="portfolioBody">
                         <table>
                             <thead>
                             <tr>
                                 <th>Stock</th>
-                                <th>Amount</th>
+                                <th>Quantity</th>
                                 <th>Unit Value</th>
                                 <th>Total Value</th>
                                 <th>Select</th>
@@ -198,7 +199,7 @@ class Portfolio extends Component {
                                 <tbody key={i}>
                                 <tr>
                                     <td>{stockItem.stockName}</td>
-                                    <td>{stockItem.stockAmount}</td>
+                                    <td>{stockItem.stockQuantity}</td>
                                     <td>{item.isEuro ?
                                         Number(stockItem.unitValue) + '$' :
                                         Number.parseFloat(Number(stockItem.unitValue) * this.state.exchangeRate).toFixed(3) + '€'}
@@ -215,16 +216,16 @@ class Portfolio extends Component {
                         </table>
                     </div>
                     <p>Total Value of {item.name}: {this.countValue(i)}</p>
-                    <div className="portfolio-footer">
+                    <div className="portfolioFooter">
                         <CreateStock
                             stockName={this.state.stockName}
-                            stockAmount={this.state.stockAmount}
-                            handleStockName={this.handleStockName}
+                            stockQuantity={this.state.stockQuantity}
+                            handleChangeStock={this.handleChangeStock}
                             addStock={this.addStock}
                             index = {i}
                         />
-                        <span><button>Perf Graph</button></span>
-                        <span><button onClick={()=>this.removeSelectedStocks(i)}>Remove Selected</button></span>
+                        <span><Button outline color="info">Perf Graph</Button></span>
+                        <span><Button outline color="danger" onClick={()=>this.removeSelectedStocks(i)}>Remove Selected</Button></span>
                     </div>
                 </div>
             </div>
@@ -233,7 +234,7 @@ class Portfolio extends Component {
             <div>
                 <CreatePortfolio
                     portfolioName={this.state.portfolioName}
-                    handlePortfolioName={this.handlePortfolioName}
+                    handleChangePortfolio={this.handleChangePortfolio}
                     createPortfolio={this.createPortfolio}
                 />
                 <div>

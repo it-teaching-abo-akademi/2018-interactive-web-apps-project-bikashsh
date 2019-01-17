@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap'
+import React, {Component} from 'react';
+import {Button,Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
 //Creating a stock
 class CreateStock extends Component {
@@ -18,41 +18,41 @@ class CreateStock extends Component {
         });
     }
     render() {
-        const {stockName, stockAmount, handleStockName, addStock, index} = this.props;
+        const {stockName, stockQuantity, handleChangeStock, addStock, index} = this.props;
         return (
             <div>
-                <div><button className="add-stock" onClick={this.toggle}>Add Stock</button></div>
+                <div><Button outline color="success" className="addStock" onClick={this.toggle}>Add Stock</Button></div>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader>Add a stock</ModalHeader>
                     <ModalBody>
                         <form>
                             <div>
-                                <label><h6>Stock Name</h6></label>
+                                <Label><h6>Stock Name</h6></Label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    placeholder="Stock Name"
+                                    placeholder="Give a Stock Name"
                                     name="stockName"
                                     value={stockName}
-                                    onChange={handleStockName}
+                                    onChange={handleChangeStock}
                                 />
                             </div>
                             <div>
-                                <label><h6>Stock Amount</h6></label>
-                                <input
+                                <Label><h6>Quantity</h6></Label>
+                                <Input
                                     type="number"
                                     className="form-control"
                                     placeholder="0"
-                                    name="stockAmount"
-                                    value={stockAmount}
-                                    onChange={handleStockName}
+                                    name="stockQuantity"
+                                    value={stockQuantity}
+                                    onChange={handleChangeStock}
                                 />
                             </div>
                         </form>
                     </ModalBody>
                     <ModalFooter>
-                        <button onClick={this.toggle}>Cancel</button>{' '}
-                        <button onClick={()=>addStock(index, this.toggle)}>Add</button>
+                        <Button outline color="secondary" onClick={this.toggle}>Cancel</Button>{' '}
+                        <Button outline color="secondary" onClick={()=>addStock(index, this.toggle)}>Add</Button>
                     </ModalFooter>
                 </Modal>
             </div>
